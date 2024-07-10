@@ -22,10 +22,14 @@ public class ReservaController {
         return reservaService.getAllReservas();
     }
 
-    @GetMapping("/{idReserva}")
+     @GetMapping("/{idReserva}")
     public ResponseEntity<Reserva> getReservaById(@PathVariable Long idReserva) {
         Reserva reserva = reservaService.getReservaById(idReserva);
-        return ResponseEntity.ok(reserva);
+        if (reserva != null) {
+            return ResponseEntity.ok(reserva);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping

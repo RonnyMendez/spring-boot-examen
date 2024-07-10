@@ -11,25 +11,28 @@ import com.examen.examen.services.ReservaAutomovilService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reserva-automoviles")
+@RequestMapping("/api/reserva-automoviles")
 public class ReservaAutomovilController {
 
     @Autowired
     private ReservaAutomovilService reservaAutomovilService;
 
     @GetMapping
-    public List<ReservaAutomovil> getAllReservaAutomoviles() {
-        return reservaAutomovilService.getAllReservaAutomoviles();
+    public ResponseEntity<List<ReservaAutomovil>> getAllReservaAutomoviles() {
+        List<ReservaAutomovil> reservasAutomoviles = reservaAutomovilService.getAllReservaAutomoviles();
+        return ResponseEntity.ok(reservasAutomoviles);
     }
 
     @GetMapping("/reserva/{idReserva}")
-    public List<ReservaAutomovil> getReservaAutomovilesByReserva(@PathVariable Long idReserva) {
-        return reservaAutomovilService.getReservaAutomovilesByReserva(idReserva);
+    public ResponseEntity<List<ReservaAutomovil>> getReservaAutomovilesByReserva(@PathVariable Long idReserva) {
+        List<ReservaAutomovil> reservasAutomoviles = reservaAutomovilService.getReservaAutomovilesByReserva(idReserva);
+        return ResponseEntity.ok(reservasAutomoviles);
     }
 
     @GetMapping("/automovil/{matricula}")
-    public List<ReservaAutomovil> getReservaAutomovilesByAutomovil(@PathVariable String matricula) {
-        return reservaAutomovilService.getReservaAutomovilesByAutomovil(matricula);
+    public ResponseEntity<List<ReservaAutomovil>> getReservaAutomovilesByAutomovil(@PathVariable String matricula) {
+        List<ReservaAutomovil> reservasAutomoviles = reservaAutomovilService.getReservaAutomovilesByAutomovil(matricula);
+        return ResponseEntity.ok(reservasAutomoviles);
     }
 
     @PostMapping
